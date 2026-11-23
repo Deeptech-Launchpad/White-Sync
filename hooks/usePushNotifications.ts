@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import * as Notifications from 'expo-notifications';
 // import * as Notifications from 'expo-notifications';
 // import * as Device from 'expo-device';
 import { Platform } from 'react-native';
@@ -19,6 +20,14 @@ export const usePushNotifications = () => {
         // registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
         notificationService.setupChannels();
 
+        // A Team alert ("Send pro-forma — from Pandiyan") opens that job when tapped.
+        const teamTap = Notifications.addNotificationResponseReceivedListener(response => {
+            const jobId = response.notification.request.content.data?.teamJobId;
+            if (typeof jobId === 'string') {
+                router.push({ pathname: '/team/[id]', params: { id: jobId } });
+            }
+        });
+
         /*
         notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
             setNotification(notification);
@@ -35,6 +44,7 @@ export const usePushNotifications = () => {
         */
 
         return () => {
+            teamTap.remove();
             /*
             if (notificationListener.current) {
                 Notifications.removeNotificationSubscription(notificationListener.current);

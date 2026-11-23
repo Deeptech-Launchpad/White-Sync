@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '@/context/ThemeContext';
 import { Colors } from '@/constants/theme';
 import { FloatingNav } from '@/components/FloatingNav';
+import { forgetSmartOps } from '@/services/smartops';
 import Animated, { FadeInUp, FadeInDown } from 'react-native-reanimated';
 
 export default function ProfileScreen() {
@@ -56,6 +57,8 @@ export default function ProfileScreen() {
                     await SecureStore.deleteItemAsync('show_all_quotes');
                     await SecureStore.deleteItemAsync('user_id');
                     await SecureStore.deleteItemAsync('last_seen_pending_ids');
+                    await SecureStore.deleteItemAsync('team_seen_mine');
+                    await forgetSmartOps();
                     router.replace('/');
                 }
             }

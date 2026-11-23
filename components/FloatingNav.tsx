@@ -28,10 +28,11 @@ export const FloatingNav = () => {
     // Navigation Items with specific colors
     const navItems = useMemo(() => [
         { id: 'home', label: 'Home', icon: 'home-outline', activeIcon: 'home', route: '/home', color: '#3B82F6' },
+        // Team replaced Calculator here; the calculator stays one tap away on Home.
+        { id: 'team', label: 'Team', icon: 'people-outline', activeIcon: 'people', route: '/team', color: '#10B981' },
         { id: 'quotes', label: 'Quotes', icon: 'document-text-outline', activeIcon: 'document-text', route: '/quotations', color: '#F59E0B' },
         { id: 'orders', label: 'Orders', icon: 'cart-outline', activeIcon: 'cart', route: '/sales-orders', color: '#00BFA5' },
         { id: 'visits', label: 'Visits', icon: 'calendar-outline', activeIcon: 'calendar', route: '/maintenance', color: '#8B5CF6' },
-        { id: 'calculator', label: 'Calculator', icon: 'calculator-outline', activeIcon: 'calculator', route: '/price-calculator', color: '#10B981' },
         { id: 'profile', label: 'Profile', icon: 'person-outline', activeIcon: 'person', route: '/profile', color: '#6366F1' },
     ], []);
 
